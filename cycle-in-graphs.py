@@ -46,6 +46,18 @@ tests = [
     # 2) Single 3-cycle (triangle)
     dict(V=4, E=[(0,1),(1,2),(2,0)], expect=True, name="Triangle cycle"),
 
+    # 3) Disconnected forest (two trees)
+    dict(V=7, E=[(0,1),(1,2), (4,5)], expect=False, name="Forest (two components)"),
+
+    # 4) Self-loop is a cycle
+    dict(V=3, E=[(0,0)], expect=True, name="Self-loop"),
+
+    # 5) Parallel edge creates a cycle in undirected graph
+    dict(V=3, E=[(0,1),(1,2),(0,1)], expect=True, name="Parallel edge implies cycle"),
+
+    # 6) Disconnected components with one containing a cycle
+    dict(V=8, E=[(0,1),(1,2),(2,0), (4,5)], expect=True, name="One component cyclic"),
+
 ]
 
 ok = True
@@ -54,4 +66,4 @@ for i, t in enumerate(tests, 1):
     print(f"[{i}] {t['name']:<28}  V={t['V']}, E={t['E']}\n    -> contains_cycle = {has}  (expected {t['expect']})\n")
     ok &= (has == t["expect"])
 
-print("All tests passed!" if ok else "Some tests failed.")
+print("All tests passed" if ok else "Some tests failed.")
