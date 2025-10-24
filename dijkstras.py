@@ -1,7 +1,7 @@
 import heapq
 from collections import defaultdict
 
-# --------complete the edge list from the map --------
+# --------complete edge list from the map --------
 EDGES = [
     (1,2,1), (1,11,1), 
     (2,3,1), (3,4,1), (21, 22, 2), (2, 21, 1),
